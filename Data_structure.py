@@ -1,3 +1,4 @@
+
 def merge_after_sum(self, tree1, tree2):
     t1 = tree1
     t2 = tree2
@@ -255,7 +256,7 @@ def invertTree(self, root):
 
 
 ## BFT 
- def invertTree(self, root):        
+def invertTree(self, root):        
         
         traversal_queue = deque([root]) if root else None
         
@@ -276,3 +277,25 @@ def invertTree(self, root):
                 traversal_queue.append( cur_node.right )                
         
         return root
+
+## Sum left nodes:
+# Define a function that receive a tree 
+# define a variable to save the sum in it and give 0 as initial value 
+# Define another function that check for the left node and add the value recure and for the left again.
+# If no left  check the right and recure.
+# return the total.
+# call the inner function.
+
+def sum_left_nodes(root):
+	sum_all_left = 0
+	if root is None:
+		return 0
+	def sum_left(root):
+		nonlocal sum_all_left
+		if root.left:
+			sum_all_left += int(root.left.value)
+			sum_left(root.left)
+		if root.right:
+			sum_left(root.right)
+		return sum_all_left 
+	return sum_left(root)
